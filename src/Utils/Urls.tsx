@@ -1,0 +1,1 @@
+export const fetchUrl = 'http://jsonplaceholder.typicode.com/posts'
