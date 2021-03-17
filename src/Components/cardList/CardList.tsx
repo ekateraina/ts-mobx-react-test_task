@@ -1,7 +1,7 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 import s from './CardList.module.css'
-import {MyComponentProps,InjectedProps} from "../Interfaces/Interfaces";
+import {MyComponentProps,InjectedProps} from "../../Interfaces/Interfaces";
 
 
 @inject('cardStore')

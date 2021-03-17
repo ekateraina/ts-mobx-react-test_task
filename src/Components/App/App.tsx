@@ -1,4 +1,4 @@
-import MyComponentInternal from "./cardList/CardList";
+import MyComponentInternal from "../cardList/CardList";
 import React from "react";
 
 class App extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import {cardStore} from '../src/mobX/store'
+import App from './Components/App/App';
+import {cardStore} from './mobX/store'
 import {Provider} from "mobx-react";
 
 ReactDOM.render(
