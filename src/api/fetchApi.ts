@@ -1,4 +1,4 @@
-import {ApiCardData} from "../Interfaces/Interfaces";
+import {ApiCardData} from "../Interfaces & Types/Interfaces";
 import {fetchUrl} from "../Utils/Urls";
 
 export const fetchData = ():Promise<ApiCardData[]> => {

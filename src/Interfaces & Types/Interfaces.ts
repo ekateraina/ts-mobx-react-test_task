@@ -6,9 +6,12 @@ export interface ApiCardData {
     title: string,
     body:string
 }
-//Костылечек для injected и TS в CardList.tsx 10-14 строка.
-export interface MyComponentProps {
+
+export interface OnSortEnd{
+    oldIndex: number,
+    newIndex: number,
 }
-export interface InjectedProps extends MyComponentProps {
+
+export interface InjectedProps{
     cardStore: CardDataStore;
 }

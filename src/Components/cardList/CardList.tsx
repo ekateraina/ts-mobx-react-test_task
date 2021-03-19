@@ -1,35 +1,36 @@
 import React from "react";
+import {SortableContainer} from 'react-sortable-hoc';
 import {inject, observer} from "mobx-react";
 import s from './CardList.module.css'
-import {MyComponentProps,InjectedProps} from "../../Interfaces/Interfaces";
-
+import {InjectedProps} from "../../Interfaces & Types/Interfaces";
+import Card from '../Card/Card'
 
 @inject('cardStore')
 @observer
-class MyComponentInternal extends React.Component<MyComponentProps,{}> {
+class MyComponent extends React.Component{
     get injected() {
         return this.props as InjectedProps
     }
 
-    componentDidMount = () => {
+      componentDidMount = () => {
         this.injected.cardStore.getDataCards()
     }
 
     render() {
         let cards = this.injected.cardStore.cardsData
         return (
+            
             <div className={s.container}>
-                {cards.length>1?cards.map(card=>{
+                {cards.length>1?cards.map((card,i)=>{
                     return (
-                        <div key={card.id} className={s.cardContainer}>
-                            <h3>{card.title}</h3>
-                            <p>{card.body}</p>
-                        </div>
-                    )
+                       <Card index={i} card={card}/>
+                   )
                 }):<div className={s.loading}>Loading...</div>}
             </div>
         );
     }
 }
+
+const MyComponentInternal = SortableContainer(MyComponent)
 
 export default MyComponentInternal
