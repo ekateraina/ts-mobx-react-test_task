@@ -1,4 +1,4 @@
-import {CardDataStore} from "../mobX/store";
+import {DataStore} from "../mobX/store";
 
 export interface ApiCardData {
     userId: number,
@@ -7,11 +7,18 @@ export interface ApiCardData {
     body:string
 }
 
+export interface ApiCatData {
+    id: string,
+    url: string,
+    width: number,
+    height: number
+}
+
 export interface OnSortEnd{
     oldIndex: number,
     newIndex: number,
 }
 
 export interface InjectedProps{
-    cardStore: CardDataStore;
+    store: DataStore;
 }

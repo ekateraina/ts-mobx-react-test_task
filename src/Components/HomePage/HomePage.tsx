@@ -8,7 +8,7 @@ import { OnSortEnd, InjectedProps } from '../../Interfaces & Types/Interfaces';
 import styles from './HomePage.module.scss'
 
 
-@inject('cardStore')
+@inject('store')
 @observer
 class HomePage extends React.Component{
 
@@ -17,13 +17,13 @@ class HomePage extends React.Component{
     }
 
     onSortEnd = ({oldIndex, newIndex}:OnSortEnd)=>{
-        this.injected.cardStore.moveCards(arrayMove(this.injected.cardStore.cardsData, oldIndex, newIndex))
+        this.injected.store.moveCards(arrayMove(this.injected.store.cardsData, oldIndex, newIndex))
         
       };
       
     render(){
         return(
-            <div className={styles.home}>
+            <div className={styles.homePage}>
 
             <MyComponentInternal axis='xy' onSortEnd={this.onSortEnd}/>
 

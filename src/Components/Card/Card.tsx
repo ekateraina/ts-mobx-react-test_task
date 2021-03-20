@@ -2,9 +2,9 @@ import React from 'react'
 import {SortableElement} from 'react-sortable-hoc';
 import {Link} from 'react-router-dom';
 import styles from './Card.module.scss'
-import { Props } from '../../Interfaces & Types/Types';
+import { cardProps } from '../../Interfaces & Types/Types';
 
-class SortableComponent extends React.Component<Props>{
+class SortableComponent extends React.Component<cardProps>{
 
 render(){
 

@@ -1,11 +1,11 @@
 import React from "react";
 import {SortableContainer} from 'react-sortable-hoc';
 import {inject, observer} from "mobx-react";
-import s from './CardList.module.css'
 import {InjectedProps} from "../../Interfaces & Types/Interfaces";
 import Card from '../Card/Card'
+import s from './CardList.module.css'
 
-@inject('cardStore')
+@inject('store')
 @observer
 class MyComponent extends React.Component{
     get injected() {
@@ -13,17 +13,17 @@ class MyComponent extends React.Component{
     }
 
       componentDidMount = () => {
-        this.injected.cardStore.getDataCards()
+        this.injected.store.getDataCards()
     }
 
     render() {
-        let cards = this.injected.cardStore.cardsData
+        let cards = this.injected.store.cardsData
         return (
             
             <div className={s.container}>
                 {cards.length>1?cards.map((card,i)=>{
                     return (
-                       <Card index={i} card={card}/>
+                       <Card key={card.id} index={i} card={card}/>
                    )
                 }):<div className={s.loading}>Loading...</div>}
             </div>

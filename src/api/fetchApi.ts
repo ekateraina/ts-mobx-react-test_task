@@ -1,6 +1,10 @@
-import {ApiCardData} from "../Interfaces & Types/Interfaces";
-import {fetchUrl} from "../Utils/Urls";
+import {ApiCardData, ApiCatData} from "../Interfaces & Types/Interfaces";
+import {cardsFetchUrl, catsFetchUrl} from "../Utils/Urls";
 
-export const fetchData = ():Promise<ApiCardData[]> => {
-    return fetch(fetchUrl).then(res=>res.json())
+export const cardsFetchData = ():Promise<ApiCardData[]> => {
+    return fetch(cardsFetchUrl).then(res=>res.json())
+}
+
+export const catsFetchData = ():Promise<ApiCatData[]> => {
+    return fetch(catsFetchUrl).then(res=>res.json())
 }
