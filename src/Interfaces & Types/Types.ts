@@ -1,11 +1,7 @@
-import {ApiCardData} from './Interfaces'
+import {ApiCardData, ApiCatData} from './Interfaces'
 
 export type cardProps = {
-    card: ApiCardData,
+    cat?: ApiCatData,
+    card?: ApiCardData,
     index: number
 }
-
-// export type catsProps = {
-//     cat: ApiCatData,
-//     index: number
-// }
