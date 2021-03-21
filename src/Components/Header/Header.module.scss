@@ -1,4 +1,33 @@
-.header{
-    width: 100%;
-    height: 4rem;
+@import "../mixins.scss";
+@import "../variables.scss";
+
+.header {
+  @include centered-elements;
+  width: 100%;
+  height: 4rem;
+ 
+  div[class*="control"] {
+    background-color: $select-bg-color;
+    border: none;
+    border-radius: 0;
+    width: 13rem;
+    outline: none;
+    margin-left: 1rem;
+
+    div[class*="singleValue"] {
+      color: $header-font-color;
+    }
+
+    div[class*="indicatorContainer"] {
+      &:hover {
+        color: $header-font-color;
+        cursor: pointer;
+      }
+    }
+  }
+
+  div[class*="menu"] {
+    background-color: $select-bg-color;
+    color: $header-font-color;
+  }
 }

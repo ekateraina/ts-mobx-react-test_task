@@ -1,62 +1,61 @@
-import {action, makeObservable, observable, runInAction, reaction} from "mobx";
-import {ApiCardData, ApiCatData} from "../Interfaces & Types/Interfaces";
-import {cardsFetchData, catsFetchData} from "../api/fetchApi";
+import {
+  action,
+  makeObservable,
+  observable,
+  runInAction,
+  reaction,
+} from "mobx";
+import { ApiCardData, ApiCatData } from "../Interfaces & Types/Interfaces";
+import { cardsFetchData, catsFetchData } from "../api/fetchApi";
 
 export class DataStore {
-    cardsData:ApiCardData[] = []
-    catsData:ApiCatData[] = []
-    selectStatus = {currentOption: '', options:[{id: 1, value: 'cats'}, {id: 2, value: 'cards'}]}
-    constructor() {
-         makeObservable(this,{
-                cardsData: observable,
-                catsData: observable,
-                selectStatus: observable,
-                getDataCards: action,
-                getDataCats: action,
-                moveCards: action,
-                changeSelectStatus: action
-            })
-         reaction(() => this.selectStatus.currentOption, async () => { 
-             if(this.selectStatus.currentOption==='cards'){
-                await this.getDataCards()  
-                runInAction(()=>{
-                    this.catsData = []                
-                })
-             }else if(this.selectStatus.currentOption==='cats'){
-                await this.getDataCats()
-                runInAction(()=>{
-                    this.cardsData = []
-                })
-             }
-          })
+  cardsData: ApiCardData[] | ApiCatData[] = [];
+  catsData: ApiCatData[] = [];
+  selectStatus = {
+    currentOption: "",
+    options: [
+      { value: "cats", label: "cats" },
+      { value: "cards", label: "cards" },
+    ],
+  };
+  constructor() {
+    makeObservable(this, {
+      cardsData: observable,
+      selectStatus: observable,
+      getData: action,
+      moveCards: action,
+      changeSelectStatus: action,
+    });
+    reaction(
+      // отслеживаем изменение select
+      () => this.selectStatus.currentOption,
+      async () => {
+        // в зависимости от значения select делаем запрос на api cards/api cats
+        if (this.selectStatus.currentOption === "cards") {
+          await this.getData(cardsFetchData);
+        } else if (this.selectStatus.currentOption === "cats") {
+          await this.getData(catsFetchData);
         }
-        
-    getDataCards = async () => {
-        const data = await cardsFetchData()
-        runInAction(()=>{
-            this.cardsData = data
-        })
-    }
+      }
+    );
+  }
 
-    getDataCats = async () => {
-        const data = await catsFetchData()
-        runInAction(()=>{
-            this.catsData = data
-        })
-    }
+  getData = async (fetch: Function) => {
+    const data = await fetch();
+    runInAction(() => {
+      this.cardsData = data;
+    });
+  };
 
-    moveCards = (cards:ApiCardData[]) => {
-           this.cardsData = cards
-    }
+  // метод для drag&drop
+  moveCards = (cards: ApiCardData[] | ApiCatData[]) => {
+    this.cardsData = cards;
+  };
 
-    moveCats = (cats:ApiCatData[]) => {
-        this.catsData = cats
-    }
-
-    changeSelectStatus = (status:string) => {
-        this.selectStatus.currentOption = status
-    }
+  // метод для изменения состояния select
+  changeSelectStatus = (status: string) => {
+    this.selectStatus.currentOption = status;
+  };
 }
 
-export const store =  new DataStore()
-
+export const store = new DataStore();

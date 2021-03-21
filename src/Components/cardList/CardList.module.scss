@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  
+  .loading {
+    margin: auto;
+    color: slategray;
+    font-weight: bolder;
+    font-size: larger;
+  }
+}

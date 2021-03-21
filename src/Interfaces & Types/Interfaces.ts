@@ -22,4 +22,3 @@ export interface OnSortEnd {
   oldIndex: number;
   newIndex: number;
 }
-

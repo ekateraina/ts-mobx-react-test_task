@@ -5,3 +5,5 @@ export type cardProps = {
     card?: ApiCardData,
     index: number
 }
+
+export type OptionType = { value: string , label: string} | null

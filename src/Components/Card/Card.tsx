@@ -8,16 +8,16 @@ import styles from "./Card.module.scss";
 @observer
 class SortableComponent extends React.Component<cardProps> {
   render() {
-    const card = this.props.card;
-    const cat = this.props.cat;
+    const {card, cat} = this.props;
 
+    // в зависимости от содержимого props возвращаем card или cat
     return card ? (
       <div className={styles.cardContainer}>
         <h3>{card.title}</h3>
         <p>{card.body}</p>
       </div>
     ) : cat ? (
-      <div className={styles.cardContainer}>
+      <div className={styles.catContainer}>
         <img src={cat.url} alt="cat" />
       </div>
     ) : (

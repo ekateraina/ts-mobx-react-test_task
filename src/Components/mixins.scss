@@ -1,0 +1,14 @@
+@mixin centered-elements {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin cards-styles {
+  @include centered-elements;
+
+  &:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+}
